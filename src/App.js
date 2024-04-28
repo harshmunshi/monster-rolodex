@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { toHaveStyle } from '@testing-library/jest-dom/matchers';
-
 
 class App extends Component{
   /* ------------- Run the constructor ------------ */
@@ -11,7 +9,7 @@ class App extends Component{
     super();
     // Instantiate the state
     this.state = {
-      name : "Harsh"
+      name : {firstName: "Harsh", lastName: "Munshi "}
     }
 
   }
@@ -21,11 +19,22 @@ class App extends Component{
         <header className='App-header'>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-          Hi {this.state.name} here!!
+          Hi {this.state.name.firstName} here!!
           </p>
-          <button>
-            Change Name
-          </button> 
+          <button onClick={() => {
+            // Pass a function instead
+            // this.setState({name: {firstName: 'Pragya'}})
+            // First is an updater function
+            //
+            this.setState(
+            () => {
+              return {
+                name: {firstName: 'Pragya'}
+              }
+            }, () => {
+              console.log(this.state);
+            }
+          )}}>Change Name</button> 
         </header>
       </div>
     );
