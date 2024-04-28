@@ -7,35 +7,27 @@ class App extends Component{
   constructor() {
     // Call super, to inherit
     super();
-    // Instantiate the state
+    // Define states for Monster Rolodex
     this.state = {
-      name : {firstName: "Harsh", lastName: "Munshi "}
+      monster1: {
+        name: 'Linda'
+      },
+      monster2: {
+        name: 'Sato'
+      },
+      monster3: {
+        name: 'Kato'
+      }
     }
 
   }
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-          Hi {this.state.name.firstName} here!!
-          </p>
-          <button onClick={() => {
-            // Pass a function instead
-            // this.setState({name: {firstName: 'Pragya'}})
-            // First is an updater function
-            //
-            this.setState(
-            () => {
-              return {
-                name: {firstName: 'Pragya'}
-              }
-            }, () => {
-              console.log(this.state);
-            }
-          )}}>Change Name</button> 
-        </header>
+        <h1>{this.state.monster1.name}</h1>
+        <h1>{this.state.monster2.name}</h1>
+        <h1>{this.state.monster3.name}</h1>
+
       </div>
     );
   }
