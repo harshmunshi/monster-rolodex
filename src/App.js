@@ -8,25 +8,49 @@ class App extends Component{
     // Call super, to inherit
     super();
     // Define states for Monster Rolodex
+    // Make the monsters a list instead
     this.state = {
-      monster1: {
-        name: 'Linda'
-      },
-      monster2: {
-        name: 'Sato'
-      },
-      monster3: {
-        name: 'Kato'
-      }
+      monsters: [
+        {
+          name: 'Linda'
+        },
+        {
+          name: 'Sato'
+        },
+        {
+          name: 'Kato'
+        }
+      ]
     }
+
+    /* ----------------------------------------------- */
+    // The method below is inefficient since we need to
+    // run the <h1> tag multiple times
+    // this.state = {
+    //   monster1: {
+    //     name: 'Linda'
+    //   },
+    //   monster2: {
+    //     name: 'Sato'
+    //   },
+    //   monster3: {
+    //     name: 'Kato'
+    //   }
+    // }
 
   }
   render() {
     return (
       <div className='App'>
-        <h1>{this.state.monster1.name}</h1>
+        {
+          this.state.monsters.map((monster) => {
+            return <h1>{monster.name}</h1>
+          })
+        }
+        {/* ----------- Ineffcient -------------- */}
+        {/* <h1>{this.state.monster1.name}</h1>
         <h1>{this.state.monster2.name}</h1>
-        <h1>{this.state.monster3.name}</h1>
+        <h1>{this.state.monster3.name}</h1> */}
 
       </div>
     );
