@@ -10,22 +10,8 @@ class App extends Component{
     // Define states for Monster Rolodex
     // Make the monsters a list instead
     this.state = {
-      monsters: [
-        {
-          name: 'Linda',
-          id: 0
-        },
-        {
-          name: 'Sato',
-          id: 1
-        },
-        {
-          name: 'Kato',
-          id: 2
-        }
-      ]
+      monsters: []
     }
-
     /* ----------------------------------------------- */
     // The method below is inefficient since we need to
     // run the <h1> tag multiple times
@@ -41,6 +27,20 @@ class App extends Component{
     //   }
     // }
 
+  }
+
+  // fetch the json from a url ASA the component is mounted
+  componentDidMount() {
+    // this is a promise
+    fetch('https://jsonplaceholder.typicode.com/users').then(
+      (response) => response.json()
+      ).then(
+        (users) => this.setState(
+          () => {
+            return {monsters: users}
+          }
+        )
+      )
   }
   render() {
     return (
