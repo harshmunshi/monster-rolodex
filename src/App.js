@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { toHaveStyle } from '@testing-library/jest-dom/matchers';
-
 
 class App extends Component{
   /* ------------- Run the constructor ------------ */
@@ -23,9 +21,9 @@ class App extends Component{
           <p>
           Hi {this.state.name} here!!
           </p>
-          <button>
-            Change Name
-          </button> 
+          <button onClick={() => {
+            this.setState({name: 'Pragya'})
+          }}>Change Name</button> 
         </header>
       </div>
     );
