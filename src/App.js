@@ -7,35 +7,73 @@ class App extends Component{
   constructor() {
     // Call super, to inherit
     super();
-    // Instantiate the state
+    // Define states for Monster Rolodex
+    // Make the monsters a list instead
     this.state = {
-      name : {firstName: "Harsh", lastName: "Munshi "}
+      monsters: []
     }
+    /* ----------------------------------------------- */
+    // The method below is inefficient since we need to
+    // run the <h1> tag multiple times
+    // this.state = {
+    //   monster1: {
+    //     name: 'Linda'
+    //   },
+    //   monster2: {
+    //     name: 'Sato'
+    //   },
+    //   monster3: {
+    //     name: 'Kato'
+    //   }
+    // }
 
+  }
+
+  // fetch the json from a url ASA the component is mounted
+  componentDidMount() {
+    // this is a promise
+    fetch('https://jsonplaceholder.typicode.com/users').then(
+      (response) => response.json()
+      ).then(
+        (users) => this.setState(
+          () => {
+            return {monsters: users}
+          }
+        )
+      )
   }
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-          Hi {this.state.name.firstName} here!!
-          </p>
-          <button onClick={() => {
-            // Pass a function instead
-            // this.setState({name: {firstName: 'Pragya'}})
-            // First is an updater function
-            //
-            this.setState(
-            () => {
-              return {
-                name: {firstName: 'Pragya'}
-              }
-            }, () => {
-              console.log(this.state);
-            }
-          )}}>Change Name</button> 
-        </header>
+        <input className='search-box' 
+        type='search' 
+        placeholder='search monster' 
+        onChange={(event) => {
+          console.log(event.target.value);
+          const searchString = event.target.value.toLocaleLowerCase();
+          const filteredMonsters = this.state.monsters.filter((monster) => {
+            return monster.name.toLocaleLowerCase().includes(searchString);
+          });
+          this.setState(() => {
+            return {monsters: filteredMonsters}
+          })
+        }}/>
+        {
+          this.state.monsters.map((monster) => {
+            return (
+            <div key={monster.id}>
+              <h1>
+                {monster.name}
+              </h1>
+            </div>
+            )
+          })
+        }
+        {/* ----------- Ineffcient -------------- */}
+        {/* <h1>{this.state.monster1.name}</h1>
+        <h1>{this.state.monster2.name}</h1>
+        <h1>{this.state.monster3.name}</h1> */}
+
       </div>
     );
   }
