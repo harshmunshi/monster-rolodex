@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import logo from './logo.svg';
+import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 class App extends Component{
@@ -58,7 +59,8 @@ class App extends Component{
             return {monsters: filteredMonsters}
           })
         }}/>
-        {
+        <CardList monsters={this.state.monsters}/>
+        {/* {
           this.state.monsters.map((monster) => {
             return (
             <div key={monster.id}>
@@ -68,7 +70,7 @@ class App extends Component{
             </div>
             )
           })
-        }
+        } */}
         {/* ----------- Ineffcient -------------- */}
         {/* <h1>{this.state.monster1.name}</h1>
         <h1>{this.state.monster2.name}</h1>
