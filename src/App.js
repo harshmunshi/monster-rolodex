@@ -1,16 +1,27 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { toHaveStyle } from '@testing-library/jest-dom/matchers';
 
 
 class App extends Component{
+  /* ------------- Run the constructor ------------ */
+  constructor() {
+    // Call super, to inherit
+    super();
+    // Instantiate the state
+    this.state = {
+      name : "Harsh"
+    }
+
+  }
   render() {
     return (
       <div className='App'>
         <header className='App-header'>
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-          Hi Harsh here!!
+          Hi {this.state.name} here!!
           </p>
           <button>
             Change Name
